@@ -1,0 +1,34 @@
+<div *ngIf="user$ | async as user">
+    <div class="cover-photo">
+      <img src="../../assests/Twitter.jpg" alt="Cover Photo">
+    </div>
+    <div class="profile-container">
+      <div class="profile-picture">
+        <img src="./twitter-clone/src/assets/pass.JPG" alt="User Image">
+      </div>
+      <div class="user-details">
+        <h2>{{ user.name }}</h2>
+        <p>{{ user.email }}</p>
+        <p>{{ user.address.street }}</p>
+        <p>{{ user.phone }}</p>
+        <p>{{ user.website }}</p>
+      </div>
+    </div>
+    <ul>
+      <li *ngFor="let post of posts$ | async">
+        <div class="post-header">
+          <img src="../../assets/pass.JPG" alt="User Image">
+          <h3>{{ post.title }}</h3>
+        </div>
+        <button (click)="showComments(post.id)">Show Comments</button>
+        <ul *ngIf="comments$ | async as comments">
+          <li *ngFor="let comment of comments">
+            <div class="comment-header">
+              <img src="../../assets/pass.JPG" alt="User Image">
+              <p>{{ comment.body }}</p>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
